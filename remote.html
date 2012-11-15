@@ -4,6 +4,8 @@
 
 <body style="background: black">
 
+<a href="https://github.com/a904guy/Boxee-Remote-Web-Version"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork this on GitHub"></a>
+
 <div class="container">
     <div class="row">
         <span class="span1 offset1" style="text-align: center">
@@ -44,14 +46,37 @@
         </span>
     </div>
 </div>
-    
+
 <script>
     $(document).ready(function(){
         $("a[command]").click(function(){
             $("iframe[requester]").attr('src','http://'+$("#host").val()+'/xbmcCmds/xbmcHttp?command='+$(this).attr('command'));
         });
         $("a.host-editor").click(function(){ $("#host-editor").toggle(); });
+        $(document).keyup(function(e){
+            $("iframe[requester]").attr('src','http://'+$("#host").val()+'/xbmcCmds/xbmcHttp?command=SendKey('+key_converter(event.which+61696)+')');
+        });
     });
+    
+    function key_converter(code)
+    {
+        switch(code)
+        {
+            case 61734: return 270; // Up
+                break;
+            case 61736: return 271; // Down
+                break;
+            case 61733: return 272; // Left
+                break;
+            case 61735: return 273; // Right
+                break;
+            case 61709: return 61453; // Select
+                break;
+            case 61704: return 275; // Back;
+                break;
+        }
+        return 0;
+    }
 </script>
 
 <iframe requester src="" style="display: none"></iframe>
