@@ -1,15 +1,270 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap-combined.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
 <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/js/bootstrap.min.js"></script>
+<script src="https://raw.github.com/brandonaaron/jquery-mousewheel/master/jquery.mousewheel.js"></script>
 
-<body style="background: black">
+<body>
 
 <a href="https://github.com/a904guy/Boxee-Remote-Web-Version"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_red_aa0000.png" alt="Fork this on GitHub"></a>
 
-<div class="container">
+<style>
+    body { background: url(http://subtlepatterns.com/patterns/classy_fabric.png) }
+    .spacing { margin-top:30px; }
+    
+    /* Remote body */
+    
+    .shell {
+        position: relative;
+        width:200px;
+        height:500px;
+        
+        border: 2px solid #333;
+        -moz-border-radius-topleft: 100px 10px;
+        border-top-left-radius: 100px 10px;
+        
+        -moz-border-radius-topright: 100px 10px;
+        border-top-right-radius: 100px 10px;
+        
+        -moz-border-radius-bottomleft: 100px 10px;
+        border-bottom-left-radius: 100px 10px;
+        
+        -moz-border-radius-bottomright: 100px 10px;
+        border-bottom-right-radius: 100px 10px;
+        
+        box-shadow: 0px 0px 25px #888, inset 5px 5px 15px #292929;
+        background-image: -ms-linear-gradient(left, #000000 0%, #292929 50%, #000000 100%);
+        background-image: -moz-linear-gradient(left, #000000 0%, #292929 50%, #000000 100%);
+        background-image: -o-linear-gradient(left, #000000 0%, #292929 50%, #000000 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #000000), color-stop(0.50, #292929), color-stop(1, #000000));
+        background-image: -webkit-linear-gradient(left, #000000 0%, #292929 50%, #000000 100%);
+        background-image: linear-gradient(to right, #000000 0%, #292929 50%, #000000 100%);
+    }
+    
+    /* Play Button */
+    .play {
+        margin: 108px auto 0 auto;
+        border: 1px solid #000;
+        height: 45px;
+        width: 45px;
+        
+        -moz-border-radius-topleft: 13px;
+        border-top-left-radius: 13px;
+        
+        -moz-border-radius-topright: 13px;
+        border-top-right-radius: 13px;
+        
+        -moz-border-radius-bottomleft: 13px;
+        border-bottom-left-radius: 13px;
+        
+        -moz-border-radius-bottomright: 13px;
+        border-bottom-right-radius: 13px;
+        
+        padding: 10px 0 0 10px;
+        
+        box-shadow: 0px 0px 5px #333, inset 0px 0px 2px #000;
+        background-image: -ms-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%,  #000000 100%);
+        background-image: -moz-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: -o-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #000000), color-stop(0.45, #1D1D1D), color-stop(0.55, #1D1D1D), color-stop(1, #000000));
+        background-image: -webkit-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: linear-gradient(to right, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+    }
+    .play_inside {
+        color: #888;
+        font-size: 16px;
+        margin:10px 0 0 5px;
+    }
+    
+    /* Navigation Buttons */
+    
+    .navigation {
+        width: 135px;
+        height: 135px;
+        margin: 10px auto 0 auto;
+        background: #1D1D1D;
+        
+        border: 2px solid #888;
+        box-shadow: 0px 0px 5px #333, inset 0px 0px 15px #000;
+        -moz-border-radius-topleft: 35px;
+        border-top-left-radius: 35px;
+        
+        -moz-border-radius-topright: 35px;
+        border-top-right-radius: 35px;
+        
+        -moz-border-radius-bottomleft: 35px;
+        border-bottom-left-radius: 35px;
+        
+        -moz-border-radius-bottomright: 35px;
+        border-bottom-right-radius: 35px;
+    }
+    
+    .navigation:before {
+        position: absolute;
+        content: '';
+        width:30px;
+        height: 4px;
+        background: #999;
+        left:84px;
+        
+        
+        box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
+        
+        -moz-border-radius-bottomleft: 4px;
+        border-bottom-left-radius: 4px;        
+        -moz-border-radius-bottomright: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    
+    .navigation:after {
+        position: absolute;
+        content: '';
+        width:4px;
+        height: 30px;
+        background: #999;
+        left:32px;
+        top:231px;
+        
+        
+        box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
+        
+        -moz-border-radius-topright: 4px;
+        border-top-right-radius: 4px;        
+        -moz-border-radius-bottomright: 4px;
+        border-bottom-right-radius: 4px;
+    }
+    
+    .navigation_inside {
+        background: #161615;
+        width: 40px;
+        height: 40px;
+        margin: 48px 0 0 45px;
+        
+        box-shadow: 0px 0px 3px #000, inset 0px 0px 2px #000;
+        
+        -moz-border-radius-topleft: 10px;
+        border-top-left-radius: 10px;
+        
+        -moz-border-radius-topright: 10px;
+        border-top-right-radius: 10px;
+        
+        -moz-border-radius-bottomleft: 10px;
+        border-bottom-left-radius: 10px;
+        
+        -moz-border-radius-bottomright: 10px;
+        border-bottom-right-radius: 10px;
+    }
+    
+    .navigation_inside:before {
+        position: absolute;
+        content: '';
+        width:30px;
+        height: 4px;
+        background: #999;
+        left:84px;
+        top:308px;
+        
+        
+        box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
+        
+        -moz-border-radius-topleft: 4px;
+        border-top-left-radius: 4px;        
+        -moz-border-radius-topright: 4px;
+        border-top-right-radius: 4px;
+    }
+    
+    .navigation_inside:after {
+        position: absolute;
+        content: '';
+        width:4px;
+        height: 30px;
+        background: #999;
+        left:163px;
+        top:231px;
+        
+        
+        box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
+        
+        -moz-border-radius-topleft: 4px;
+        border-top-left-radius: 4px;        
+        -moz-border-radius-bottomleft: 4px;
+        border-bottom-left-radius: 4px;
+    }
+    
+    .back {
+        margin: 10px auto 0 auto;
+        border: 1px solid #000;
+        height: 45px;
+        width: 45px;
+        
+        -moz-border-radius-topleft: 13px;
+        border-top-left-radius: 13px;
+        
+        -moz-border-radius-topright: 13px;
+        border-top-right-radius: 13px;
+        
+        -moz-border-radius-bottomleft: 13px;
+        border-bottom-left-radius: 13px;
+        
+        -moz-border-radius-bottomright: 13px;
+        border-bottom-right-radius: 13px;
+        
+        padding: 10px 0 0 10px;
+        
+        box-shadow: 0px 0px 5px #333, inset 0px 0px 2px #000;
+        background-image: -ms-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%,  #000000 100%);
+        background-image: -moz-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: -o-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: -webkit-gradient(linear, left top, right top, color-stop(0, #000000), color-stop(0.45, #1D1D1D), color-stop(0.55, #1D1D1D), color-stop(1, #000000));
+        background-image: -webkit-linear-gradient(left, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+        background-image: linear-gradient(to right, #000000 0%, #1D1D1D 45%, #1D1D1D 55%, #000000 100%);
+    }
+    
+    .back_inside {
+        color: #888;
+        font-size: 20px;
+        margin:10px 0 0 8px;
+    }
+    
+</style>
+
+
+<div class="container-fluid spacing">
+    <div class="row-fluid">
+        <div class="offset4">
+        
+        <div class="shell">
+            
+            <div class="play">
+                <div class="play_inside" href="#" command="SendKey(61453)">
+                    <i class="icon-play pull-left"></i>&nbsp;
+                    <i class="icon-pause pull-left"></i>
+                </div>
+            </div>
+            
+            <div class="navigation">
+                
+                <div class="navigation_inside" href="#" command="SendKey(61453)">&nbsp;</div>
+                
+            </div>
+            
+            <div class="back">
+                <div class="back_inside" href="#" command="SendKey(275)">
+                    <i class="icon-list-ul"></i>
+                </div>
+            </div>
+            
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+
+<div class="container" style="margin-top:600px">
     <div class="row">
         <span class="span1 offset1" style="text-align: center">
-            <img style="margin-left:30px" src="http://markassets.boxee.tv/assets/boxee_logo_white_eye-18dc3bb380d883b82c1384f3e3545fd1.png"/>
+            <a href="http://boxee.tv/"><img style="margin-left:30px" src="http://markassets.boxee.tv/assets/boxee_logo_white_eye-18dc3bb380d883b82c1384f3e3545fd1.png"/></a>
         </span>
         <span class="span1">
             <a class="host-editor btn" href="#" style="width:70px">Host <i class="icon-wrench"></i></a>
@@ -45,18 +300,37 @@
             <a href="#" class="btn" command="SendKey(273)" style="width:70px">Right <i class="icon-arrow-right"></i></a>
         </span>
     </div>
+    
 </div>
 
 <script>
     $(document).ready(function(){
         $("a[command]").click(function(){
-            $("iframe[requester]").attr('src','http://'+$("#host").val()+'/xbmcCmds/xbmcHttp?command='+$(this).attr('command'));
+            send_command($(this).attr('command'));
         });
         $("a.host-editor").click(function(){ $("#host-editor").toggle(); });
         $(document).keyup(function(e){
-            $("iframe[requester]").attr('src','http://'+$("#host").val()+'/xbmcCmds/xbmcHttp?command=SendKey('+key_converter(event.which+61696)+')');
+            send_command('SendKey('+key_converter(event.which+61696)+')');
         });
     });
+    
+    $(document).bind('mousewheel', function(event, delta, deltaX, deltaY) {
+        switch(delta)
+        {
+            case -1:
+                key = 271;
+                break;
+            case 1:
+                key = 270;
+                break;
+        }
+        send_command('SendKey('+key+')');
+    });
+    
+    function send_command(command)
+    {
+        $("iframe[requester]").attr('src','http://'+$("#host").val()+'/xbmcCmds/xbmcHttp?command='+command);
+    }
     
     function key_converter(code)
     {
@@ -70,8 +344,10 @@
                 break;
             case 61735: return 273; // Right
                 break;
+            case 61728:
             case 61709: return 61453; // Select
                 break;
+            case 61723:
             case 61704: return 275; // Back;
                 break;
         }
