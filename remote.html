@@ -43,6 +43,7 @@
     
     /* Play Button */
     .play {
+        cursor: pointer;
         margin: 108px auto 0 auto;
         border: 1px solid #000;
         height: 45px;
@@ -120,10 +121,10 @@
         position: absolute;
         content: '';
         width:4px;
-        height: 30px;
+        height: 32px;
         background: #999;
         left:32px;
-        top:231px;
+        top:228px;
         
         
         box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
@@ -135,10 +136,11 @@
     }
     
     .navigation_inside {
+        cursor: pointer;
         background: #161615;
         width: 40px;
         height: 40px;
-        margin: 48px 0 0 45px;
+        margin: 47px 0 0 48px;
         
         box-shadow: 0px 0px 3px #000, inset 0px 0px 2px #000;
         
@@ -177,10 +179,10 @@
         position: absolute;
         content: '';
         width:4px;
-        height: 30px;
+        height: 32px;
         background: #999;
         left:163px;
-        top:231px;
+        top:228px;
         
         
         box-shadow: 0px 0px 15px #000, inset 0px 0px 3px #333;
@@ -192,6 +194,7 @@
     }
     
     .back {
+        cursor: pointer;
         margin: 10px auto 0 auto;
         border: 1px solid #000;
         height: 45px;
@@ -226,86 +229,106 @@
         margin:10px 0 0 8px;
     }
     
+    .navi_up {
+        background:transparent;
+        position: absolute;
+        z-index: 1000;
+        height:42px;
+        width:139px;
+        left:30px;
+        cursor: pointer;
+    }
+    .navi_left {
+        background:transparent;
+        position: absolute;
+        z-index: 1000;
+        height:51px;
+        width:42px;
+        left:30px;
+        top: 219px;
+        cursor: pointer;
+    }
+    .navi_right {
+        background:transparent;
+        position: absolute;
+        z-index: 1000;
+        height:51px;
+        width:42px;
+        left:127px;
+        top: 219px;
+        cursor: pointer;
+    }
+    .navi_down {
+        background:transparent;
+        position: absolute;
+        z-index: 1000;
+        height:42px;
+        width:139px;
+        left:30px;
+        top:270px;
+        cursor: pointer;
+    }
+    
 </style>
 
 
 <div class="container-fluid spacing">
     <div class="row-fluid">
-        <div class="offset4">
+        <div class="offset4 pull-left">
         
-        <div class="shell">
-            
-            <div class="play">
-                <div class="play_inside" href="#" command="SendKey(61453)">
-                    <i class="icon-play pull-left"></i>&nbsp;
-                    <i class="icon-pause pull-left"></i>
-                </div>
-            </div>
-            
-            <div class="navigation">
+            <div class="shell">
                 
-                <div class="navigation_inside" href="#" command="SendKey(61453)">&nbsp;</div>
+                <div class="play" command="SendKey(61453)">
+                    <div class="play_inside">
+                        <i class="icon-play pull-left"></i>&nbsp;
+                        <i class="icon-pause pull-left"></i>
+                    </div>
+                </div>
+                
+                <div class="navigation">
+                    
+                    <div class="navi_up" command="SendKey(270)"></div>
+                    <div class="navi_left" command="SendKey(272)"></div>
+                    <div class="navi_right" command="SendKey(273)"></div>
+                    <div class="navi_down" command="SendKey(271)"></div>
+                    
+                    <div class="navigation_inside" command="SendKey(61453)">&nbsp;</div>
+                    
+                    
+                    
+                </div>
+                
+                <div class="back" command="SendKey(275)">
+                    <div class="back_inside">
+                        <i class="icon-list-ul"></i>
+                    </div>
+                </div>
                 
             </div>
-            
-            <div class="back">
-                <div class="back_inside" href="#" command="SendKey(275)">
-                    <i class="icon-list-ul"></i>
-                </div>
-            </div>
-            
+        
         </div>
         
+        <div class="span2">
+            <a href="http://boxee.tv/">
+                <img src="http://markassets.boxee.tv/assets/boxee_logo_white_eye-18dc3bb380d883b82c1384f3e3545fd1.png"/>
+            </a><br/><br/>
+            
+            <div class="row">
+                <span class="pull-left">
+                    <a class="host-editor btn" href="#" style="width:70px; margin-right:10px">Host <i class="icon-wrench"></i></a>
+                </span>
+                <div class="pull-left" id="host-editor" style="display: none">
+                        <input id="host" type="text" value="11.1.11.46:8800" style="width:100%; height:30px" placeholder="host:port" />
+                </div>
+            </div>
         </div>
+        
     </div>
-</div>
-
-
-<div class="container" style="margin-top:600px">
-    <div class="row">
-        <span class="span1 offset1" style="text-align: center">
-            <a href="http://boxee.tv/"><img style="margin-left:30px" src="http://markassets.boxee.tv/assets/boxee_logo_white_eye-18dc3bb380d883b82c1384f3e3545fd1.png"/></a>
-        </span>
-        <span class="span1">
-            <a class="host-editor btn" href="#" style="width:70px">Host <i class="icon-wrench"></i></a>
-        </span>
-    </div>
-    
-    <div id="host-editor" class="row" style="display: none">
-        <span class="span3">
-            <input id="host" type="text" value="11.1.11.46:8800" style="width:295px; height:30px" placeholder="host:port" />
-        </span>
-    </div>
-    
-    <div class="row">
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(275)" style="width:70px">Back <i class="icon-step-backward"></i></a>
-        </span>
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(270)" style="width:70px">Up <i class="icon-arrow-up"></i></a>
-        </span>
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(61453)" style="width:70px">Select <i class=" icon-share-alt"></i></a>
-        </span>
-    </div>
-    
-    <div class="row" style="margin-top:15px;">
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(272)" style="width:70px">Left <i class="icon-arrow-left"></i></a>
-        </span>
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(271)" style="width:70px">Down <i class="icon-arrow-down"></i></a>
-        </span>
-        <span class="span1">
-            <a href="#" class="btn" command="SendKey(273)" style="width:70px">Right <i class="icon-arrow-right"></i></a>
-        </span>
-    </div>
-    
 </div>
 
 <script>
     $(document).ready(function(){
-        $("a[command]").click(function(){
+        $("div[command]").click(function(){
             send_command($(this).attr('command'));
         });
         $("a.host-editor").click(function(){ $("#host-editor").toggle(); });
