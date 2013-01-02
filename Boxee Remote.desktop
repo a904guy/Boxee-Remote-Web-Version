@@ -1,7 +1,9 @@
 [Desktop Entry]
-Encoding=UTF-8
-Name=Link to 
-Type=Link
-URL=http://htmlpreview.github.com/?https://github.com/a904guy/Boxee-Remote-Web-Version/blob/master/remote.html#
+Version=1.0
+Name=Boxee
+Exec=/opt/google/chrome/google-chrome "--app=http://htmlpreview.github.com/?https://github.com/a904guy/Boxee-Remote-Web-Version/blob/master/remote.html#"
+Terminal=false
 Icon=/home/mike/Dropbox/Unity/Boxee Logo.png
-Name[en_US]=Boxee Remote
+Type=Application
+Categories=Network;WebBrowser;
+StartupWMClass=htmlpreview.github.com
